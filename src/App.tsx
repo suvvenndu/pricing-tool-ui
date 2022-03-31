@@ -1,20 +1,13 @@
 import {getProposals, getProposalSummary} from './service/PricingToolService';
 import React, {useEffect} from 'react';
-//import './App.css';
+import Facilities from "./Constants/Facilities";
 import 'bootstrap/dist/css/bootstrap.css';
 import {Table} from 'react-bootstrap';
 import moment from 'moment';
 
 
 export const App = () => {
-    const countryData = [
-        {value: 1, name: 'Facility1'},
-        {value: 2, name: 'Facility2'},
-        {value: 3, name: 'Facility3'},
-        {value: 4, name: 'Facility4'}
-    ];
-
-
+    const DD_MM_YY = 'DD/MM/YYYY';
     const [proposals, setProposals] = React.useState([{
         proposalId: "",
         proposalName: "",
@@ -24,7 +17,6 @@ export const App = () => {
         status: "",
         summaryId: ""
     }]);
-
     const [summary, setSummary] = React.useState({
         "bookingCountry": "",
         "facility": "",
@@ -65,7 +57,7 @@ export const App = () => {
                         return <tr key={p.proposalId}>
                             <td>{p.proposalName}</td>
                             <td>{p.customerGroup}</td>
-                            <td>{moment(p.date).format('DD/MM/YYYY')}</td>
+                            <td>{moment(p.date).format(DD_MM_YY)}</td>
                             <td>{p.description}</td>
                             <td>{p.status}</td>
                             <td>
@@ -95,7 +87,7 @@ export const App = () => {
                                 <tr>
                                     <td>
                                         <select value={summary.facility}>
-                                            {countryData.map((e, key) => {
+                                            {Facilities.map((e, key) => {
                                                 return <option key={key} value={e.value}>{e.name}</option>;
                                             })}
                                         </select>
@@ -104,8 +96,8 @@ export const App = () => {
                                     <td>{summary.bookingCountry}</td>
                                     <td>{summary.currency}</td>
                                     <td>{summary.limit}</td>
-                                    <td>{moment(summary.startDate).format('DD/MM/YYYY')}</td>
-                                    <td>{moment(summary.maturityDate).format('DD/MM/YYYY')}</td>
+                                    <td>{moment(summary.startDate).format(DD_MM_YY)}</td>
+                                    <td>{moment(summary.maturityDate).format(DD_MM_YY)}</td>
                                 </tr>
                                 </tbody>
                             </Table>
