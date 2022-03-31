@@ -2,12 +2,13 @@ import axios from 'axios';
 
 
 
-const baseURI = "https://localhost:5001/PriceDetails";
+const proposalsURI = "https://localhost:5001/PriceDetails";
+const summariesURI = "https://localhost:5001/Summaries";
 
 export function getProposals() {
-    return axios.get(baseURI);
+    return axios.get(proposalsURI);
 }
 
 export function getProposalSummary(summaryId: string) {
-    return axios.get(`${baseURI}/${summaryId}`);
+    return axios.get(`${summariesURI}/${summaryId}`);
 }
