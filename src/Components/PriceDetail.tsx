@@ -56,7 +56,7 @@ export const PriceDetail = (props: IPriceDetailProp) => {
             {summary.currency != "" &&
                 <tr>
                     <td>
-                        <Summary summary={summary}></Summary>
+                        <Summary summary={summary} />
                     </td>
                 </tr>
             }

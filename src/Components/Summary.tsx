@@ -7,6 +7,7 @@ import ISummaryProp from "../Model/ISummaryProp";
 export const Summary = (props: ISummaryProp) => {
     const DD_MM_YY = 'DD/MM/YYYY';
 
+    const {summary} = props;
     return (<>
         <Table striped bordered hover>
             <thead>
@@ -22,18 +23,17 @@ export const Summary = (props: ISummaryProp) => {
             <tbody>
             <tr>
                 <td>
-                    <select value={props.summary.facility}>
+                    <select value={summary.facility}>
                         {Facilities.map((e, key) => {
                             return <option key={key} value={e.value}>{e.name}</option>;
                         })}
                     </select>
                 </td>
-                <td>{props.summary.facility}</td>
-                <td>{props.summary.bookingCountry}</td>
-                <td>{props.summary.currency}</td>
-                <td>{props.summary.limit}</td>
-                <td>{moment(props.summary.startDate).format(DD_MM_YY)}</td>
-                <td>{moment(props.summary.maturityDate).format(DD_MM_YY)}</td>
+                <td>{summary.bookingCountry}</td>
+                <td>{summary.currency}</td>
+                <td>{summary.limit}</td>
+                <td>{moment(summary.startDate).format(DD_MM_YY)}</td>
+                <td>{moment(summary.maturityDate).format(DD_MM_YY)}</td>
             </tr>
             </tbody>
         </Table>
