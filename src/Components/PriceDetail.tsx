@@ -1,14 +1,13 @@
 import moment from "moment";
 import {Table} from "react-bootstrap";
-import Facilities from "../Constants/Facilities";
 import React from "react";
 import {getProposalSummary} from "../service/PricingToolService";
-import IPriceDetail from "../Model/IPriceDetail";
 import IPriceDetailProp from "../Model/IPriceDetailProp";
+import Summary from "./Summary";
 
 export const PriceDetail = (props: IPriceDetailProp) => {
-
     const DD_MM_YY = 'DD/MM/YYYY';
+
     const [summary, setSummary] = React.useState({
         "bookingCountry": "",
         "facility": "",
@@ -57,35 +56,7 @@ export const PriceDetail = (props: IPriceDetailProp) => {
             {summary.currency != "" &&
                 <tr>
                     <td>
-                        <Table striped bordered hover>
-                            <thead>
-                            <tr>
-                                <th>Facility</th>
-                                <th>Boking Country</th>
-                                <th>Currency</th>
-                                <th>Limit</th>
-                                <th>Start Date</th>
-                                <th>Maturity Date</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <select value={summary.facility}>
-                                        {Facilities.map((e, key) => {
-                                            return <option key={key} value={e.value}>{e.name}</option>;
-                                        })}
-                                    </select>
-                                </td>
-                                <td>{summary.facility}</td>
-                                <td>{summary.bookingCountry}</td>
-                                <td>{summary.currency}</td>
-                                <td>{summary.limit}</td>
-                                <td>{moment(summary.startDate).format(DD_MM_YY)}</td>
-                                <td>{moment(summary.maturityDate).format(DD_MM_YY)}</td>
-                            </tr>
-                            </tbody>
-                        </Table>
+                        <Summary summary={summary}></Summary>
                     </td>
                 </tr>
             }
